@@ -1,5 +1,7 @@
 # Ogg
 
+[![Build Status](https://travis-ci.org/namusyaka/ogg.png)](https://travis-ci.org/namusyaka/ogg)
+
 Ogg is an Open Graph Generator, support *Basic Metadata*, *Optional Metadata*, *Structured Properties* at present.
 
 [Whats is Open Graph?](http://ogp.me/)
