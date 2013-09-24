@@ -29,8 +29,6 @@ ogg.type  = 'Article'
 ogg.description = 'Description'
 ogg.url   = 'http://example.com/'
 ogg.image = 'http://example.com/example.png'
-ogg.site_image = 'http://example.com/site_image.png'
-ogg.email = 'foo@bar.com'
 ogg.html
 ```
 
@@ -43,13 +41,11 @@ ogg = Ogg.new do |o|
   o.description = 'Description'
   o.url   = 'http://example.com/'
   o.image = 'http://example.com/example.png'
-  o.site_image = 'http://example.com/site_image.png'
-  o.email = 'foo@bar.com'
 end
 ogg.html
 ```
 
-#### `:raise`
+### `:raise`
 
 If you set :raise option and basic properties are inadequacy, occurs `InvalidBasicProperty`.
 
@@ -104,6 +100,48 @@ ogg = Ogg.new do |o|
   o.audio[:type]       = "audio/mpeg"
 end
 ogg.html
+```
+
+### Generate html
+
+```ruby
+ogg = Ogg.new
+ogg.title = 'Site Title'
+ogg.type  = 'Article'
+ogg.description = 'Description'
+ogg.url   = 'http://example.com/'
+ogg.image = 'http://example.com/example.png'
+```
+
+#### `html`
+
+```ruby
+ogg.html #=>
+=begin
+<meta property="og:title" content="Site Title">
+<meta property="og:type" content="Article">
+<meta property="og:description" content="Description">
+<meta property="og:url" content="http://example.com/">
+<meta property="og:image" content="http://example.com/example.png">
+=end
+```
+
+#### `basic_properties`
+
+```ruby
+ogg.basic_properties #=>
+=begin
+<meta property="og:title" content="Site Title">
+<meta property="og:type" content="Article">
+<meta property="og:url" content="http://example.com/">
+<meta property="og:image" content="http://example.com/example.png">
+=end
+```
+
+#### `optional_properties`
+
+```ruby
+ogg.optional_properties #=> <meta property="og:description" content="Description">
 ```
 
 ## Contributing
