@@ -177,5 +177,41 @@ module Ogg
         expect(actual_html).to have_tag("meta", :without => {:property => "og:title"})
       end
     end
+
+    describe "#[]" do
+      it "should be same behavior with defined method for property." do
+        ogg = Ogg::Generator.new do |o|
+          o.title = "Site Title"
+          o.type  = "Article"
+          o.image = "http://example.com/example.png"
+          o.url   = "http://example.com/"
+        end
+        expect(ogg.title).to eq(ogg[:title])
+        expect(ogg.type).to eq(ogg[:type])
+        expect(ogg.image).to eq(ogg[:image])
+        expect(ogg.url).to eq(ogg[:url])
+      end
+    end
+
+    describe "#[]=" do
+      it "should be same behavior with defined method for property." do
+        foo = Ogg::Generator.new do |o|
+          o.title = "Site Title"
+          o.type  = "Article"
+          o.image = "http://example.com/example.png"
+          o.url   = "http://example.com/"
+        end
+        bar = Ogg::Generator.new do |o|
+          o[:title] = "Site Title"
+          o[:type]  = "Article"
+          o[:image] = "http://example.com/example.png"
+          o[:url]   = "http://example.com/"
+        end
+        expect(foo.title.content).to eq(bar.title.content)
+        expect(foo.type.content).to eq(bar.type.content)
+        expect(foo.image.content).to eq(bar.image.content)
+        expect(foo.url.content).to eq(bar.url.content)
+      end
+    end
   end
 end

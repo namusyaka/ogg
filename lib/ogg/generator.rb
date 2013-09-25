@@ -125,6 +125,15 @@ module Ogg
       instance_eval(&block) if block_given?
     end
 
+    def [](name)
+      raise ArgumentError unless respond_to?(name)
+      __send__(name)
+    end
+
+    def []=(name, value)
+      __send__(:[], name).content = value
+    end
+
     def basic_properties
       BASIC_PROPERTIES.map{|name|
         property_instance = __send__(name)
