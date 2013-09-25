@@ -31,6 +31,7 @@ module Ogg
       end
 
       def method_missing(name, *args)
+        super unless @children
         name = name.to_s
         structured_property = @children.find{|child| [child.property, "#{child.property}="].include?(name) }
         super unless structured_property
