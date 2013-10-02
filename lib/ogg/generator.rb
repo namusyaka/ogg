@@ -158,6 +158,8 @@ module Ogg
       @properties.values.map(&:meta_tag).delete_if(&:empty?).join("\n")
     end
 
+    private
+
     def raise_invalid_basic_property(name)
       raise InvalidBasicProperty, "`#{name}` should be set."
     end
